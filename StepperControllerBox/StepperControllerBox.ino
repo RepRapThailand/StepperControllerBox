@@ -1,7 +1,7 @@
 /*
- Name:		TestStepDriver.ino
+ Name:		StepperControllerBox.ino
  Created:	6/25/2019 10:01:15 PM
- Author:	MyPC
+ Author:	Mr. H
 */
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
@@ -107,7 +107,7 @@ void loop() {
 void InitEveryThing() {
 	InitIO();
 	InitData();
-	CheckData();
+	//CheckData();
 	InitLcdMenu();
 	lastMillis = millis();
 }
@@ -404,19 +404,19 @@ void UpdateData()
 	}
 }
 
-void checkValue(String name, float val)
-{
-	//Serial.print(name + ":  ");
-	//Serial.println(val);
-}
-
-void CheckData()
-{
-	//checkValue("currentPos", CurrentPosition);
-	//checkValue("DesiredPos", DesiredPosition);
-	//checkValue("CurrentSteps", CurrentSteps);
-	//checkValue("DesiredSteps", DesiredSteps);
-	//checkValue("StepPerMm", StepPerMm);
-	//checkValue("Speed", Speed);
-	//checkValue("PulseCycle", PulseCycle);
-}
+//void checkValue(String name, float val)
+//{
+//	//Serial.print(name + ":  ");
+//	//Serial.println(val);
+//}
+//
+//void CheckData()
+//{
+//	checkValue("currentPos", CurrentPosition);
+//	checkValue("DesiredPos", DesiredPosition);
+//	checkValue("CurrentSteps", CurrentSteps);
+//	checkValue("DesiredSteps", DesiredSteps);
+//	checkValue("StepPerMm", StepPerMm);
+//	checkValue("Speed", Speed);
+//	checkValue("PulseCycle", PulseCycle);
+//}

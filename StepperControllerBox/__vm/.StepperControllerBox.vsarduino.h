@@ -14,6 +14,7 @@
 #define _VSARDUINO_H_
 #define __AVR_ATmega328p__
 #define __AVR_ATmega328P__
+#define _VMDEBUG 1
 #define F_CPU 16000000L
 #define ARDUINO 10809
 #define ARDUINO_AVR_NANO
@@ -75,6 +76,6 @@ typedef void *__builtin_va_list;
 #define pgm_read_float(address_short) float()
 #define pgm_read_ptr(address_short)   short()
 
-#include "TestStepDriver.ino"
+#include "StepperControllerBox.ino"
 #endif
 #endif

@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestStepDriver.ino" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="__vm\.TestStepDriver.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="fastio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -44,5 +38,8 @@
     <ClCompile Include="StableButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StepperControllerBox.ino" />
   </ItemGroup>
 </Project>
