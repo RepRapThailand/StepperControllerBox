@@ -31,9 +31,9 @@
 #define INVERT_STEPPER_DIRECTION
 #define INVERT_ENCODER_DIRECTION
 
-//#define SPEED_RESOLUTION 0.01
-//#define POSITION_RESOLUTION 0.1
-//#define STEP_PER_MM_RESOLUTION 100
+#define SPEED_RESOLUTION 0.01f
+#define POSITION_RESOLUTION 5.0f
+#define STEP_PER_MM_RESOLUTION 100.0f
 
 struct Data
 {
@@ -62,13 +62,13 @@ Label* lbStepPerMm;
 VariableText* vbStepPerMm;
 Label* lbSpeed;
 VariableText* vbSpeed;
-OriginMenu* thirdMenu;
-FunctionText* ftSaveAll;
+//OriginMenu* thirdMenu;
+//FunctionText* ftSaveAll;
 
 FunctionText* ftReturn;
 FunctionText* ftReturn1;
-FunctionText* ftReturn2;
-FunctionText* ftReturn3;
+//FunctionText* ftReturn2;
+//FunctionText* ftReturn3;
 
 //set up Stepper
 float DesiredPosition;
@@ -84,7 +84,8 @@ uint32_t PulseCycle;
 int32_t Direction;
 
 bool isStarted = false;
-unsigned long lastMillis;
+unsigned long timer1;
+unsigned long timer2;
 
 void setup() {
 	LCDMenu.Init(lcd, "3D Ceramic");
@@ -102,6 +103,7 @@ void loop() {
 	LCDMenu.ExecuteEffect();
 	LCDMenu.UpdateScreen();
 	UpdateData();
+	AutoSaveDataToEEPROM();
 }
 
 void InitEveryThing() {
@@ -109,7 +111,8 @@ void InitEveryThing() {
 	InitData();
 	//CheckData();
 	InitLcdMenu();
-	lastMillis = millis();
+	timer1 = millis();
+	timer2 = millis();
 }
 
 void InitLcdMenu()
@@ -118,12 +121,12 @@ void InitLcdMenu()
 	{
 		lbPosition = new Label(firstMenu, "MoveTo:", 0, 0);
 		vbPosition = new VariableText(firstMenu, 0, 11, 0);
-		vbPosition->Resolution = 0.1;
+		vbPosition->Resolution = POSITION_RESOLUTION;
 		vbPosition->SetValue(CurrentPosition);
 		vbPosition->HandleWhenValueChange = HandleValueChanger;
 		ftStart = new FunctionText(firstMenu, "Start", 0, 1);
 		ftStart->Function = StartMoving;
-		ftReturn = new FunctionText(firstMenu, "<-", 14, 1);
+		ftReturn = new FunctionText(firstMenu, "->", 14, 1);
 		ftReturn->Function = LCDReturn;
 	}
 
@@ -131,29 +134,29 @@ void InitLcdMenu()
 	{
 		lbStepPerMm = new Label(secondMenu, "STEP/MM:", 0, 0);
 		vbStepPerMm = new VariableText(secondMenu, 0, 9, 0);
-		vbStepPerMm->Resolution = 100;
+		vbStepPerMm->Resolution = STEP_PER_MM_RESOLUTION;
 		vbStepPerMm->SetValue(StepPerMm);
 		vbStepPerMm->HandleWhenValueChange = HandleValueChanger;
 		lbSpeed = new Label(secondMenu, "Speed:", 0, 1);
 		vbSpeed = new VariableText(secondMenu, 0, 7, 1);
-		vbSpeed->Resolution = 0.01;
+		vbSpeed->Resolution = SPEED_RESOLUTION;
 		vbSpeed->SetValue(Speed);
 		vbSpeed->HandleWhenValueChange = HandleValueChanger;
-		ftReturn1 = new FunctionText(secondMenu, "<-", 14, 1);
+		ftReturn1 = new FunctionText(secondMenu, "->", 14, 1);
 		ftReturn1->Function = LCDReturn;
 	}
 
-	thirdMenu = new OriginMenu();
+	/*thirdMenu = new OriginMenu();
 	{
 		ftSaveAll = new FunctionText(thirdMenu, "Save All", 0, 0);
 		ftSaveAll->Function = SaveDataToEEPROM;
-		ftReturn2 = new FunctionText(thirdMenu, "<-", 14, 1);
+		ftReturn2 = new FunctionText(thirdMenu, "->", 14, 1);
 		ftReturn2->Function = LCDReturn;
-	}
+	}*/
 
 	LCDMenu.AddMenu(firstMenu);
 	LCDMenu.AddMenu(secondMenu);
-	LCDMenu.AddMenu(thirdMenu);
+	//LCDMenu.AddMenu(thirdMenu);
 	LCDMenu.SetCurrentMenu(firstMenu);
 	LCDMenu.UpdateScreen();
 }
@@ -388,9 +391,9 @@ void SetDirection(bool dir)
 
 void UpdateData()
 {
-	if (millis() > lastMillis + 300)
+	if (millis() > timer1 + 300)
 	{
-		lastMillis = millis();
+		timer1 = millis();
 		
 		if (CurrentSteps == DesiredSteps)
 		{
@@ -404,6 +407,18 @@ void UpdateData()
 	}
 }
 
+void AutoSaveDataToEEPROM()
+{
+	if (millis() > timer2 + 3000)
+	{
+		Data data;
+		data.lastPos = CurrentPosition;
+		data.lastSpeed = Speed;
+		data.stepPerMm = StepPerMm;
+		EEPROM.put(0, data);
+		timer2 = millis();
+	}
+}
 //void checkValue(String name, float val)
 //{
 //	//Serial.print(name + ":  ");
