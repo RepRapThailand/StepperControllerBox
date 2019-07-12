@@ -93,7 +93,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\StepperControllerBox;$(ProjectDir)..\..\..\..\Documents\Arduino\libraries\LiquidCrystal_I2C;E:\Arduin\Arduino\hardware\arduino\avr\libraries\Wire\src;E:\Arduin\Arduino\hardware\arduino\avr\libraries\EEPROM\src;E:\Arduin\Arduino\libraries;$(ProjectDir)..\..\..\..\Documents\Arduino\libraries;E:\Arduin\Arduino\hardware\arduino\avr\libraries;E:\Arduin\Arduino\hardware\arduino\avr\cores\arduino;E:\Arduin\Arduino\hardware\arduino\avr\variants\eightanaloginputs;E:\Arduin\Arduino\hardware\tools\avr\avr\include;E:\Arduin\Arduino\hardware\tools\avr\avr\include\avr;E:\Arduin\Arduino\hardware\tools\avr\lib\gcc\avr\4.8.1\include;E:\Arduin\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\Arduin\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\StepperControllerBox;$(ProjectDir)..\..\..\..\Documents\Arduino\libraries\LiquidCrystal_I2C;E:\Arduin\Arduino\hardware\arduino\avr\libraries\Wire\src;E:\Arduin\Arduino\libraries;$(ProjectDir)..\..\..\..\Documents\Arduino\libraries;E:\Arduin\Arduino\hardware\arduino\avr\libraries;E:\Arduin\Arduino\hardware\arduino\avr\cores\arduino;E:\Arduin\Arduino\hardware\arduino\avr\variants\eightanaloginputs;E:\Arduin\Arduino\hardware\tools\avr\avr\include;E:\Arduin\Arduino\hardware\tools\avr\avr\include\avr;E:\Arduin\Arduino\hardware\tools\avr\lib\gcc\avr\4.8.1\include;E:\Arduin\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\Arduin\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.StepperControllerBox.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;F_CPU=16000000L;ARDUINO=10809;ARDUINO_AVR_NANO;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -132,7 +132,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties arduino.upload.port="COM5" />
+      <UserProperties arduino.upload.port="COM6" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
